@@ -6,7 +6,7 @@ async function handleResponseFromAPI(promise) {
       body: 'success',
     };
   } catch (error) {
-    throw new Error('An error occurred while handling the API response');
+    throw new Error();
   } finally {
     console.log('Got a response from the API');
   }
