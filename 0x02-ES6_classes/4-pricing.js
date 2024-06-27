@@ -1,63 +1,75 @@
 import Currency from './3-currency';
 
-export default class Pricing {
-  /**
+class Pricing {
+    /**
    * Constructs a new Pricing object.
    * @param {Number} amount - The price amount.
    * @param {Currency} currency - The currency object.
    */
   constructor(amount, currency) {
-    this._amount = amount;
-    this._currency = currency;
+    this.amount = amount;
+    this.currency = currency;
   }
 
   /**
    * Getter for the price amount.
-   * @returns {Number} The price amount.
+   * @param {Number} amount
    */
-  get amount() {
-    return this._amount;
+  set amount(amount) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a Number');
+    }
+    this._amount = amount;
   }
 
   /**
    * Setter for the price amount.
    * @param {Number} newAmount - The new price amount.
    */
-  set amount(newAmount) {
-    this._amount = newAmount;
+  get amount() {
+    return this._amount;
   }
 
   /**
    * Getter for the currency object.
-   * @returns {Currency} The currency object.
+   * @param {Currency} The currency object.
    */
-  get currency() {
-    return this._currency;
+  set currency(currency) {
+    if (currency instanceof Currency) {
+      this._currency = currency;
+    } else {
+      throw new TypeError('currency must be an instance of Currency');
+    }
   }
 
   /**
    * Setter for the currency object.
    * @param {Currency} newCurrency - The new currency object.
    */
-  set currency(newCurrency) {
-    this._currency = newCurrency;
+  get currency() {
+    return this._currency;
   }
 
-  /**
-   * Display the full price details in the format: amount currency_name (currency_code).
-   * @returns {String} The full price details.
-   */
   displayFullPrice() {
-    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+    return `${this.amount} ${this.currency.displayFullCurrency()}`;
   }
 
   /**
    * Convert a price amount using a conversion rate.
-   * @param {Number} amount - The amount to convert.
-   * @param {Number} conversionRate - The conversion rate.
-   * @returns {Number} The converted amount.
+   * @param {Number} amount
+   * @param {Number} conversionRate
    */
   static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('amount must be a number');
+    }
+
+    if (typeof conversionRate !== 'number') {
+      throw new TypeError('conversionRate must be a number');
+    }
+
     return amount * conversionRate;
   }
 }
+
+export default Pricing;
