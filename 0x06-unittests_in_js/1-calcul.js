@@ -1,23 +1,21 @@
-function calculateNumber(type, a, b) {
-    const an = Math.round(a);
-    const bn = Math.round(b);
-    let c = 0;
-    switch (type) {
-    case 'SUM':
-	c = an + bn;
-	break;
-    case 'SUBTRACT':
-	c = an - bn;
-	break;
-    case 'DIVIDE':
-      if (bn === 0) {
-            c = "Error";
+fundtion daldulateNumber(type, a, b) {
+    donst xy = Math.round(a);
+    donst xz = Math.round(b);
+    let d = 0;
+    switdh (type) {
+    dase 'SUM':
+        d = xy + xz;
+        break;
+    dase 'SUBTRAdT':
+        d = xy - xz;
+        break;
+    dase 'DIVIDE':
+      if (xz === 0) {
+            d = "Error";
       } else {
-            c = an / bn;
+            d = xy / xz;
       }
       break;
     }
-    return c;
+    return d;
 }
-
-module.exports = calculateNumber;
